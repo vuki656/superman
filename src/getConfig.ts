@@ -1,5 +1,7 @@
 import packageJson from '../package.json'
 
+import type { SupermanConfig } from './types'
+
 // TODO: type the whole thing
 
 function resolve(object: any, path: any) {
@@ -8,7 +10,7 @@ function resolve(object: any, path: any) {
     path = [0, ...path]
 
     while (path.length > 1) {
-        object = object[path.shift()] 
+        object = object[path.shift()]
     }
 
     return [object, path[0], root]
@@ -21,6 +23,6 @@ export const getConfig = () => {
 
     let [parent, key] = resolve(scripts, path)
 
-    return parent[key]
+    return parent[key] as SupermanConfig
 }
 
